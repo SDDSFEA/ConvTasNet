@@ -1,0 +1,63 @@
+#### Conv-TasNet Setting
+name: Conv_Tasnet
+gpu_ids: [0]
+#gpu_ids: [0]
+epochs: 100
+
+#### Dataset Configure
+datasets:
+  num_workers: 4
+  batch_size: 1
+  fs: 16000
+  train:
+    mix_scp: /home/student/zt/Conv-TasNet_/Conv_TasNet_TSE/data/data_scp/data_clean100_scp/tr_mix.scp
+    tar_scp_spk1: /home/student/zt/Conv-TasNet_/Conv_TasNet_TSE/data/data_scp/data_clean100_scp/tr_s1.scp
+    tar_scp_spk2: /home/student/zt/Conv-TasNet_/Conv_TasNet_TSE/data/data_scp/data_clean100_scp/tr_s2.scp
+    txt_scp_spk1: /home/student/zt/Conv-TasNet_/Conv_TasNet_TSE/data/text/train_100/train_100_spk1.csv
+    txt_scp_spk2: /home/student/zt/Conv-TasNet_/Conv_TasNet_TSE/data/text/train_100/train_100_spk2.csv
+    sr: 16000
+  val:
+    mix_scp: /home/student/zt/Conv-TasNet_/Conv_TasNet_TSE/data/data_scp/data_clean100_scp/cv_mix.scp
+    tar_scp_spk1: /home/student/zt/Conv-TasNet_/Conv_TasNet_TSE/data/data_scp/data_clean100_scp/cv_s1.scp
+    tar_scp_spk2: /home/student/zt/Conv-TasNet_/Conv_TasNet_TSE/data/data_scp/data_clean100_scp/cv_s2.scp
+    txt_scp_spk1: /home/student/zt/Conv-TasNet_/Conv_TasNet_TSE/data/text/val/val_spk1.csv
+    txt_scp_spk2: /home/student/zt/Conv-TasNet_/Conv_TasNet_TSE/data/text/val/val_spk2.csv
+    sr: 16000
+
+
+#### training settings: learning rate scheme, loss
+train:
+  optimizer: adam
+  min_lr: !!float 1e-8
+  patience: 2
+  factor: 0.5
+  logging_period: 200
+  clip_norm: 200
+  num_epochs: 100
+  checkpoint: Conv-TasNet-resume
+
+optimizer_kwargs:
+  lr: !!float 1e-3
+  weight_decay: !!float 1e-5
+
+#### network configure
+net_conf:
+  N: 512
+  L: 16
+  B: 128
+  H: 512
+  P: 3
+  X: 8
+  R: 3
+  norm: gln
+  activate: relu
+  causal: false
+  text_model_name: "bert-base-uncased"   # 文本模型名称
+  pooling_method: "CLS"                 # 池化方法
+  attn_dim: 256                         # 注意力维度
+  ##skip_con: false
+
+#### resume model
+resume:
+  path: /home/student/zt/Conv-TasNet_/Conv_TasNet_TSE/
+  resume_state: true

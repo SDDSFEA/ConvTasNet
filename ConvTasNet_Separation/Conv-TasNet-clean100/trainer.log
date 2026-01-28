@@ -1,0 +1,44 @@
+2026-01-28 16:08:10 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:136 - INFO ] Create optimizer adam: {'lr': 0.001, 'weight_decay': 1e-05}
+2026-01-28 16:08:10 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:105 - INFO ] Starting preparing model ............
+2026-01-28 16:08:10 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:106 - INFO ] Loading model to GPUs:(0,), #param: 3.48M
+2026-01-28 16:08:10 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:111 - INFO ] Gradient clipping by 200, default L2
+2026-01-28 16:08:11 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:190 - INFO ] Validation model ......
+2026-01-28 16:08:31 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:205 - INFO ] <epoch:  0, iter:200, lr:1.000e-03, loss:44.304, batch:200 utterances> 
+2026-01-28 16:08:52 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:205 - INFO ] <epoch:  0, iter:400, lr:1.000e-03, loss:43.483, batch:400 utterances> 
+2026-01-28 16:09:11 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:205 - INFO ] <epoch:  0, iter:600, lr:1.000e-03, loss:43.479, batch:600 utterances> 
+2026-01-28 16:09:11 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:209 - INFO ] <epoch:  0, lr:1.000e-03, loss:43.755, Total time:1.006 min> 
+2026-01-28 16:09:11 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:221 - INFO ] Starting epoch from 0, loss = 43.7549
+2026-01-28 16:09:11 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:160 - INFO ] Training model ......
+2026-01-28 16:10:30 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  1, iter:200, lr:1.000e-03, loss:0.688, batch:200 utterances> 
+2026-01-28 16:11:48 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  1, iter:400, lr:1.000e-03, loss:-0.590, batch:400 utterances> 
+2026-01-28 16:13:06 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  1, iter:600, lr:1.000e-03, loss:-0.704, batch:600 utterances> 
+2026-01-28 16:14:24 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  1, iter:800, lr:1.000e-03, loss:-0.645, batch:800 utterances> 
+2026-01-28 16:15:42 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  1, iter:1000, lr:1.000e-03, loss:-0.757, batch:1000 utterances> 
+2026-01-28 16:17:00 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  1, iter:1200, lr:1.000e-03, loss:-1.433, batch:1200 utterances> 
+2026-01-28 16:18:17 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  1, iter:1400, lr:1.000e-03, loss:-1.661, batch:1400 utterances> 
+2026-01-28 16:19:35 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  1, iter:1600, lr:1.000e-03, loss:-1.868, batch:1600 utterances> 
+2026-01-28 16:20:52 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  1, iter:1800, lr:1.000e-03, loss:-1.708, batch:1800 utterances> 
+2026-01-28 16:22:10 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  1, iter:2000, lr:1.000e-03, loss:-1.781, batch:2000 utterances> 
+2026-01-28 16:23:27 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  1, iter:2200, lr:1.000e-03, loss:-1.975, batch:2200 utterances> 
+2026-01-28 16:24:45 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  1, iter:2400, lr:1.000e-03, loss:-1.937, batch:2400 utterances> 
+2026-01-28 16:26:03 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  1, iter:2600, lr:1.000e-03, loss:-2.205, batch:2600 utterances> 
+2026-01-28 16:27:12 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:182 - INFO ] <epoch:  1, lr:1.000e-03, loss:-1.341, Total time:18.019 min> 
+2026-01-28 16:27:13 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:190 - INFO ] Validation model ......
+2026-01-28 16:27:32 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:205 - INFO ] <epoch:  1, iter:200, lr:1.000e-03, loss:-1.935, batch:200 utterances> 
+2026-01-28 16:27:51 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:205 - INFO ] <epoch:  1, iter:400, lr:1.000e-03, loss:-1.644, batch:400 utterances> 
+2026-01-28 16:28:11 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:205 - INFO ] <epoch:  1, iter:600, lr:1.000e-03, loss:-2.296, batch:600 utterances> 
+2026-01-28 16:28:11 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:209 - INFO ] <epoch:  1, lr:1.000e-03, loss:-1.959, Total time:0.969 min> 
+2026-01-28 16:28:14 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:241 - INFO ] Epoch: 1, now best loss change: -1.9586
+2026-01-28 16:28:17 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:160 - INFO ] Training model ......
+2026-01-28 16:29:35 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  2, iter:200, lr:1.000e-03, loss:-2.505, batch:200 utterances> 
+2026-01-28 16:30:53 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  2, iter:400, lr:1.000e-03, loss:-2.657, batch:400 utterances> 
+2026-01-28 16:32:10 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  2, iter:600, lr:1.000e-03, loss:-2.975, batch:600 utterances> 
+2026-01-28 16:33:28 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  2, iter:800, lr:1.000e-03, loss:-2.838, batch:800 utterances> 
+2026-01-28 16:34:46 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  2, iter:1000, lr:1.000e-03, loss:-3.384, batch:1000 utterances> 
+2026-01-28 16:36:03 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  2, iter:1200, lr:1.000e-03, loss:-3.399, batch:1200 utterances> 
+2026-01-28 16:37:21 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  2, iter:1400, lr:1.000e-03, loss:-3.384, batch:1400 utterances> 
+2026-01-28 16:38:39 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  2, iter:1600, lr:1.000e-03, loss:-3.778, batch:1600 utterances> 
+2026-01-28 16:39:57 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  2, iter:1800, lr:1.000e-03, loss:-4.310, batch:1800 utterances> 
+2026-01-28 16:41:14 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  2, iter:2000, lr:1.000e-03, loss:-4.311, batch:2000 utterances> 
+2026-01-28 16:42:32 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  2, iter:2200, lr:1.000e-03, loss:-4.272, batch:2200 utterances> 
+2026-01-28 16:43:50 [/mnt/ConvTasNet/ConvTasNet_Separation/trainer.py:178 - INFO ] <epoch:  2, iter:2400, lr:1.000e-03, loss:-4.386, batch:2400 utterances> 
