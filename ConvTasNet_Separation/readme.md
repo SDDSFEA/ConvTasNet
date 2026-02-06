@@ -3,9 +3,8 @@
 2. Generate scp file using script file of create_scp.py
 3. 目前主要用的是train-100的clean,8k,max
 4. 数据集加载
-    `train.py`里面`from DataLoaders_max import make_dataloader`
+    `train.py`里面`from DataLoaders import make_dataloader`
     - convTasNet原论文4s一截断`DataLoaders.py`
-    - 不截断`DataLoaders_max.py`
 
 
 # Training Command
