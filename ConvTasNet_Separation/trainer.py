@@ -27,6 +27,23 @@ def to_device(dicts, device):
     else:
         raise RuntimeError('input egs\'s type is not dict')
 
+def init_new_modules(net):
+    import torch.nn as nn
+    # 初始化 gate
+    if hasattr(net, 'gate'):
+        if isinstance(net.gate, nn.Linear):
+            nn.init.constant_(net.gate.weight, 0.5)
+            nn.init.zeros_(net.gate.bias)
+        elif isinstance(net.gate, nn.Parameter):
+            with torch.no_grad():
+                net.gate.fill_(0.5)
+    # 初始化 cross attention Linear
+    if hasattr(net, 'cross_attention'):
+        for name in ['query_proj', 'key_proj', 'value_proj', 'output_proj']:
+            layer = getattr(net.cross_attention, name)
+            nn.init.xavier_uniform_(layer.weight)
+            nn.init.zeros_(layer.bias)
+
 
 class Trainer():
     '''
@@ -83,14 +100,30 @@ class Trainer():
 
         # Whether to resume the model
         if resume['resume_state']:
-            cpt = torch.load(os.path.join(
-                resume['path'], self.checkpoint, 'best.pt'), map_location='cpu')
-            self.cur_epoch = cpt['epoch']
-            self.logger.info("Resume from checkpoint {}: epoch {:d}".format(
-                resume['path'], self.cur_epoch))
-            net.load_state_dict(cpt['model_state_dict'])
-            self.net = net.to(self.device)
-            self.optimizer = self.create_optimizer(optimizer, optimizer_kwargs, state=cpt['optim_state_dict'])
+            best_ckpt_path = os.path.join(resume['path'], self.checkpoint, 'best.pt')
+            if os.path.exists(best_ckpt_path):
+                # ===== 使用 resume 逻辑 =====
+                cpt = torch.load(best_ckpt_path, map_location='cpu')
+                self.cur_epoch = cpt['epoch']
+                self.logger.info("Resume from checkpoint {}: epoch {:d}".format(
+                    resume['path'], self.cur_epoch))
+                net.load_state_dict(cpt['model_state_dict'])
+                self.net = net.to(self.device)
+                self.optimizer = self.create_optimizer(optimizer, optimizer_kwargs, state=cpt['optim_state_dict'])
+            else:
+                # 从wavLM encoder和baseline初始权重开始从头训练
+                cpt = torch.load("/mnt/ConvTasNet/ConvTasNet_Separation/baseline_checkpoint/best.pt", map_location='cpu')
+                missing, unexpected = net.load_state_dict(cpt['model_state_dict'], strict=False)
+                self.logger.info("从baseline预训练权重中加载")
+                from safetensors.torch import load_file
+                state_dict = load_file("/mnt/ConvTasNet/WavLM_separator/WavLM_separator-clean100/encoder_1b_clean.safetensors")
+                self.logger.info("从Wavlm预训练权重中加载")
+                missing, unexpected = net.wavlm_encoder.load_state_dict(state_dict, strict=False)
+                init_new_modules(net)
+                print("Missing keys:", missing)
+                print("Unexpected keys:", unexpected)
+                self.net = net.to(self.device)
+                self.optimizer = self.create_optimizer(optimizer, optimizer_kwargs)
         else:
             self.net = net.to(self.device)
             self.optimizer = self.create_optimizer(optimizer, optimizer_kwargs)
@@ -99,7 +132,8 @@ class Trainer():
 
         # Reduce lr
         self.scheduler = ReduceLROnPlateau(
-            self.optimizer, mode='min', factor=0.5, patience=patience, verbose=True, min_lr=min_lr)
+            self.optimizer, mode='min', factor=0.5, patience=patience, min_lr=min_lr)
+            # self.optimizer, mode='min', factor=0.5, patience=patience, verbose=True, min_lr=min_lr)
 
         # logging
         self.logger.info("Starting preparing model ............")
@@ -132,7 +166,48 @@ class Trainer():
         }
         if optimizer not in supported_optimizer:
             raise ValueError("Now only support optimizer {}".format(optimizer))
-        opt = supported_optimizer[optimizer](self.net.parameters(), **kwargs)
+        ###################################################################
+        # # 1. 冻结所有参数
+        # for p in self.net.parameters():
+        #     p.requires_grad = False
+
+        # # 2. 解冻语义注入模块
+        # semantic_params = self.net.get_semantic_parameters()
+        # semantic_ids = set(id(p) for p in semantic_params)
+        # for name, param in self.net.named_parameters():
+        #     if id(param) in semantic_ids:
+        #         param.requires_grad = True
+        #         self.logger.info(f"Stage 1 可训练参数: {name}")
+
+        # # 3. 构造优化器（只传 semantic_params）
+        # opt = supported_optimizer[optimizer](semantic_params, **kwargs)
+
+        # print(f"Stage 1 可训练参数量: {sum(p.numel() for p in semantic_params)/1e6:.2f} M")
+
+        #######################################################################
+        # 1️⃣ 解冻所有参数
+        for p in self.net.parameters():
+            p.requires_grad = True
+
+        # 2️⃣ 冻结不想训练的部分
+        freeze_params = self.net.get_wavlmencoder_parameters()  # 这里举例，冻结纯音频路径
+        freeze_ids = set(id(p) for p in freeze_params)
+
+        for name, param in self.net.named_parameters():
+            if id(param) in freeze_ids:
+                param.requires_grad = False
+                self.logger.info(f"冻结参数: {name}")
+
+        # 3️⃣ 构造优化器（只传 requires_grad=True 的参数）
+        trainable_params = [p for p in self.net.parameters() if p.requires_grad]
+        opt = supported_optimizer[optimizer](trainable_params, **kwargs)
+
+        print(f"可训练参数量: {sum(p.numel() for p in trainable_params)/1e6:.2f} M")
+        #################### 全量训练###########################################
+        # opt = supported_optimizer[optimizer](self.net.parameters(), **kwargs)
+        #######################################################################
+        
+        # opt = supported_optimizer[optimizer](self.net.parameters(), **kwargs)
         self.logger.info("Create optimizer {0}: {1}".format(optimizer, kwargs))
         if state is not None:
             opt.load_state_dict(state)
