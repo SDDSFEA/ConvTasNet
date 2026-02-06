@@ -23,6 +23,16 @@ class WavLMencoder(PreTrainedModel):
         # 初始化 encoder
         self.encoder = WavLMModel.from_pretrained(wavlm_name)
         
+        # 模型参数
+        self.talker_numbers = talker_numbers
+        self.separator_hidden = separator_hidden
+
+        # if self.talker_ctc:
+        self.separator = WavLMSeparator(
+            in_dim=self.encoder.config.hidden_size,
+            hidden_size=separator_hidden,
+            talker_numbers=self.talker_numbers
+        )
         
     def forward(
         self,
@@ -38,12 +48,12 @@ class WavLMencoder(PreTrainedModel):
         # encoder_hidden_states = encoder_outputs[0]
         wavlm_hidden_stages   = encoder_outputs[1]      # un-downsampled feature
         # wavlm_down_hidden_stages = encoder_outputs[2]
-        # mixed_encoding_feature = wavlm_hidden_stages
+        mixed_encoding_feature = wavlm_hidden_stages
 
-        # # Here we add serialized CTC
-        # sep_hidden_states = self.separator(mixed_encoding_feature)
+        # Here we add serialized CTC
+        sep_hidden_states = self.separator(mixed_encoding_feature)
         
-        return wavlm_hidden_stages
+        return sep_hidden_states
 
 class GlobalLayerNorm(nn.Module):
     '''
@@ -343,6 +353,7 @@ class ConvTasNet(nn.Module):
                  activate="relu",
                  causal=False,
                  wavlm_name="wavlm_large",  # 新增：文本模型名称
+                 wavlm_sep_dim=796,
                  attn_dim=256):                 # 新增：注意力维度):                 
         super(ConvTasNet, self).__init__()
         # n x 1 x T => n x N x T
@@ -355,6 +366,8 @@ class ConvTasNet(nn.Module):
          # 新增：语义注入相关模块
         self.wavlm_encoder = WavLMencoder(
             wavlm_name=wavlm_name, 
+            talker_numbers=num_spks,
+            separator_hidden=wavlm_sep_dim
         )
         # 合并文本特征维度
         # text_dim = self.text_encoder.embedding_dim * 2
@@ -371,7 +384,7 @@ class ConvTasNet(nn.Module):
             kernel_size=P,
             norm=norm,
             causal=causal,
-            semantic_dim=self.wavlm_encoder.encoder.config.hidden_size,
+            semantic_dim=self.wavlm_encoder.encoder.config.hidden_size*num_spks,
             attn_dim=attn_dim
         )
         # n x B x T => n x 2*N x T
@@ -413,11 +426,11 @@ class ConvTasNet(nn.Module):
         # print(f"wavlm_out[0] shape: {wavlm_out[0].shape}") 
         # print(f"wavlm_out[1] shape: {wavlm_out[1].shape}") 
         # speaker-wise concat
-        # semantic_embed = torch.cat(wavlm_out, dim=-1)      # [B, T_w, N*D]
+        semantic_embed = torch.cat(wavlm_out, dim=-1)      # [B, T_w, N*D]
         # print(f"semantic_embed shape: {semantic_embed.shape}")
         # 合并文本特征
         # n x B x L => n x B x L
-        e = self.separation(e,wavlm_out)
+        e = self.separation(e,semantic_embed)
         # print(f"e shape after separation: {e.shape}")
         # n x B x L => n x num_spk*N x L
         m = self.gen_masks(e)
