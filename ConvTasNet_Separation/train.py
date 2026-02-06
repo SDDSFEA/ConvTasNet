@@ -3,8 +3,8 @@ import argparse
 import sys
 sys.path.append('./options')
 from trainer import Trainer
-from Conv_TasNet import ConvTasNet
-from DataLoaders_max import make_dataloader
+from Conv_TasNet_wavlm_linearAlign import ConvTasNet
+from DataLoaders import make_dataloader
 from option import parse
 from utils import get_logger
 
