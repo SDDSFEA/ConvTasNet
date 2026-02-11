@@ -1,4 +1,17 @@
 /mnt/ConvTasNet/ConvTasNet_Separation/Conv-TasNet-clean100
 /mnt/ConvTasNet/ConvTasNet_Separation/Conv-TasNet-clean100-text
+Conv-TasNet-clean100-WavLM-ScconvFuse/
+Conv-TasNet-clean100-WavLM-dwconvFuse-gate-adap/
+Conv-TasNet-clean100-WavLM-dwconvFuse-gate-att2-unfreeze/
+Conv-TasNet-clean100-WavLM-dwconvFuse-gate-film/                                                                                                                                                                
+Conv-TasNet-clean100-WavLM-dwconvFuse-gate/
+Conv-TasNet-clean100-WavLM-film/
+Conv-TasNet-clean100-WavLM-gate/
+Conv-TasNet-clean100-WavLM-up-unfreeze/
+Conv-TasNet-clean100-WavLM-up/
+Conv-TasNet-clean360/
+Conv-TasNet-noise360/
+enhanced/
 
+slurm*
 *.pt

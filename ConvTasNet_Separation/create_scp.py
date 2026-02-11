@@ -8,13 +8,13 @@ test_mix_scp = 'tt_mix.scp'
 test_s1_scp = 'tt_s1.scp'
 test_s2_scp = 'tt_s2.scp'
 
-train_mix = '/mnt/data/Libri2Mix/Libri2Mix/wav16k/max/train-100/mix_clean'
-train_s1 = '/mnt/data/Libri2Mix/Libri2Mix/wav16k/max/train-100/s1'
-train_s2 = '/mnt/data/Libri2Mix/Libri2Mix/wav16k/max/train-100/s2'
+train_mix = '/lustre/users/shi/datasets/librimix/Libri2Mix/wav8k/max/train-100/mix_clean'
+train_s1 = '/lustre/users/shi/datasets/librimix/Libri2Mix/wav8k/max/train-100/s1'
+train_s2 = '/lustre/users/shi/datasets/librimix/Libri2Mix/wav8k/max/train-100/s2'
 
-test_mix = '/mnt/data/Libri2Mix/Libri2Mix/wav16k/max/test/mix_clean'
-test_s1 = '/mnt/data/Libri2Mix/Libri2Mix/wav16k/max/test/s1'
-test_s2 = '/mnt/data/Libri2Mix/Libri2Mix/wav16k/max/test/s2'
+test_mix = '/lustre/users/shi/datasets/librimix/Libri2Mix/wav8k/max/test/mix_clean'
+test_s1 = '/lustre/users/shi/datasets/librimix/Libri2Mix/wav8k/max/test/s1'
+test_s2 = '/lustre/users/shi/datasets/librimix/Libri2Mix/wav8k/max/test/s2'
 
 tr_mix = open(train_mix_scp,'w')
 for root, dirs, files in os.walk(train_mix):
@@ -68,9 +68,9 @@ cv_mix_scp = 'cv_mix.scp'
 cv_s1_scp = 'cv_s1.scp'
 cv_s2_scp = 'cv_s2.scp'
 
-cv_mix = '/mnt/data/Libri2Mix/Libri2Mix/wav16k/max/dev/mix_clean'
-cv_s1 = '/mnt/data/Libri2Mix/Libri2Mix/wav16k/max/dev/s1'
-cv_s2 = '/mnt/data/Libri2Mix/Libri2Mix/wav16k/max/dev/s2'
+cv_mix = '/lustre/users/shi/datasets/librimix/Libri2Mix/wav8k/max/dev/mix_clean'
+cv_s1 = '/lustre/users/shi/datasets/librimix/Libri2Mix/wav8k/max/dev/s1'
+cv_s2 = '/lustre/users/shi/datasets/librimix/Libri2Mix/wav8k/max/dev/s2'
 
 cv_mix_file = open(cv_mix_scp,'w')
 for root, dirs, files in os.walk(cv_mix):
