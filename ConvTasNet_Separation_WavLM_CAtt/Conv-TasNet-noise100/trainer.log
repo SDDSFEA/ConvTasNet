@@ -1,0 +1,12 @@
+2026-02-14 07:36:22 [/lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/trainer_baseline.py:213 - INFO ] Create optimizer adam: {'lr': 0.001, 'weight_decay': 1e-05}
+2026-02-14 07:36:22 [/lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/trainer_baseline.py:139 - INFO ] Starting preparing model ............
+2026-02-14 07:36:22 [/lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/trainer_baseline.py:140 - INFO ] Loading model to GPUs:(0, 1), #param: 3.48M
+2026-02-14 07:36:22 [/lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/trainer_baseline.py:145 - INFO ] Gradient clipping by 200, default L2
+2026-02-14 07:36:22 [/lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/trainer_baseline.py:269 - INFO ] Validation model ......
+2026-02-14 07:36:33 [/lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/trainer_baseline.py:284 - INFO ] <epoch:  0, iter:200, lr:1.000e-03, loss:45.822, batch:200 utterances> 
+2026-02-14 07:36:39 [/lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/trainer_baseline.py:284 - INFO ] <epoch:  0, iter:400, lr:1.000e-03, loss:46.928, batch:400 utterances> 
+2026-02-14 07:36:46 [/lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/trainer_baseline.py:284 - INFO ] <epoch:  0, iter:600, lr:1.000e-03, loss:44.787, batch:600 utterances> 
+2026-02-14 07:36:52 [/lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/trainer_baseline.py:284 - INFO ] <epoch:  0, iter:800, lr:1.000e-03, loss:45.511, batch:800 utterances> 
+2026-02-14 07:36:57 [/lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/trainer_baseline.py:288 - INFO ] <epoch:  0, lr:1.000e-03, loss:45.750, Total time:0.574 min> 
+2026-02-14 07:36:57 [/lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/trainer_baseline.py:300 - INFO ] Starting epoch from 0, loss = 45.7496
+2026-02-14 07:36:57 [/lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/trainer_baseline.py:237 - INFO ] Training model ......

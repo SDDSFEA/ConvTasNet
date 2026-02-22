@@ -1,11 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
-sub_set=dev
-att_dim=256
-out_dir=Net_dwAtt1_clean360_${att_dim}
+sub_set=test
+att_dim=32
+out_dir=Net_dwAtt1_noise360_${att_dim}
 net_name="Net_dwAtt1"
-model_path=/lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/Conv-TasNet-clean360-WavLM-dwconvFuse-${att_dim}
+model_path=/lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/Conv-TasNet-noise360-WavLM-dwconvFuse-${att_dim}
 
 if [[ "$sub_set" == "dev" ]]; then
   file_name="cv_mix.scp"
@@ -50,7 +50,7 @@ case "$net_name" in
 esac
 
 
-opt_yaml=./options/train/train_clean360_WavLM_dwconvFuse_${att_dim}.yml
+opt_yaml=./options/train/train_noise360_WavLM_dwconvFuse_${att_dim}.yml
 
 echo "net_name=$net_name"
 echo "opt_yaml=$opt_yaml"
@@ -59,7 +59,7 @@ echo "model_path=$model_path"
 
 
 /lustre/users/shi/toolkits/m_speaker_llm/venv/bin/python Separation_nets.py \
-        -mix_scp /lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/data/audio_scp_8k/${sub_set}/clean/${file_name} \
+        -mix_scp /lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/data/audio_scp_8k/${sub_set}/noise/${file_name} \
         -yaml $opt_yaml \
         -model ${model_path}/best.pt \
         -gpuid 0 \

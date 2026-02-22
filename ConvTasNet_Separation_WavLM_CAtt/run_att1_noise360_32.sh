@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=1b-2spk_n
 #SBATCH --partition=002-partition-all
-#SBATCH --gpus=4
+#SBATCH --gpus=2
 #SBATCH --container-image=/lustre/users/shi/audio_llm-latest.sqsh
 #SBATCH --container-mounts=/lustre:/lustre
 #SBATCH --exclusive
@@ -16,5 +16,5 @@ nvidia-smi -L || true
 
 source /lustre/users/shi/toolkits/m_speaker_llm/venv/bin/activate
 cd /lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt
-/lustre/users/shi/toolkits/m_speaker_llm/venv/bin/python train_baseline.py --opt ./options/train/train_noise100.yml
+/lustre/users/shi/toolkits/m_speaker_llm/venv/bin/python train_dwconv_noise360.py --opt ./options/train/train_noise360_WavLM_dwconvFuse_32.yml
 

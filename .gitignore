@@ -11,6 +11,8 @@ Conv-TasNet-clean100-WavLM-up-unfreeze/
 Conv-TasNet-clean100-WavLM-up/
 Conv-TasNet-clean360/
 Conv-TasNet-noise360/
+Conv-TasNet-clean360-WavLM-dwconvFuse-*
+Conv-TasNet-noise360-WavLM-dwconvFuse-*
 enhanced/
 
 slurm*

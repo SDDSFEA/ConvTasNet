@@ -1,21 +1,21 @@
 #### Conv-TasNet Setting
 name: Conv_Tasnet
 # gpu_ids: [0,1,2,3,6,7]
-gpu_ids: [0,1,2,3]
+gpu_ids: [0,1]
 epochs: 100
 
 #### Dataset Configure
 datasets:
   num_workers: 16
-  batch_size: 16
+  batch_size: 10
   fs: 8000
-  chunk_len: 4
-  chunk_size: 32000 #### fs*chunk_len
+  # chunk_len: 4
+  # chunk_size: 32000 #### fs*chunk_len
   train:
-    mix_scp: /lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/data/audio_scp_8k/train_360/noise/tr_mix.scp
+    mix_scp: /lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/data/audio_scp_8k/train_100/noise/tr_mix.scp
     ref_scp: 
-      - /lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/data/audio_scp_8k/train_360/tr_s1.scp
-      - /lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/data/audio_scp_8k/train_360/tr_s2.scp
+      - /lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/data/audio_scp_8k/train_100/tr_s1.scp
+      - /lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/data/audio_scp_8k/train_100/tr_s2.scp
     sr: 8000
   val:
     mix_scp: /lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt/data/audio_scp_8k/dev/noise/cv_mix.scp
@@ -33,7 +33,7 @@ train:
   logging_period: 200
   clip_norm: 200
   num_epochs: 100
-  checkpoint: Conv-TasNet-noise360
+  checkpoint: Conv-TasNet-noise100
 
 optimizer_kwargs:
   lr: !!float 1e-3
@@ -56,5 +56,5 @@ net_conf:
 
 #### resume model
 resume:
-  path: /mnt/Conv-TasNet/Conv_TasNet_Pytorch
+  path: /mnt/ConvTasNet/ConvTasNet_Separation
   resume_state: false

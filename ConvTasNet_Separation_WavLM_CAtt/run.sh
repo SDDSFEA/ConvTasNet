@@ -17,5 +17,9 @@ source /lustre/users/shi/toolkits/m_speaker_llm/venv/bin/activate
 # /lustre/users/shi/toolkits/m_speaker_llm/venv/bin/python train_nets.py --opt options/train/train_clean100_WavLM_up.yml --model_net Net_up
 
 # /lustre/users/shi/toolkits/m_speaker_llm/venv/bin/python train_nets_unfreeze.py --opt ./options/train/train_clean100_WavLM_dwconvFuse_att2_unfreeze.yml --model_net Net_dwAtt2
-/lustre/users/shi/toolkits/m_speaker_llm/venv/bin/python train_nets_unfreeze.py --opt options/train/train_clean100_WavLM_up_unfreeze.yml --model_net Net_up
+# /lustre/users/shi/toolkits/m_speaker_llm/venv/bin/python train_nets.py --opt options/train/train_clean360_WavLM_dwconvFuse_wogate_128.yml --model_net Net_dwAtt1_wogate
+# /lustre/users/shi/toolkits/m_speaker_llm/venv/bin/python train_nets.py --opt options/train/train_clean360_WavLM_dwconvFuse_wogate_64.yml --model_net Net_dwAtt1_wogate
+/lustre/users/shi/toolkits/m_speaker_llm/venv/bin/python train_nets.py --opt options/train/train_clean360_WavLM_dwconvFuse_woshare_64.yml --model_net Net_dwAtt1_woshare
+
+
 

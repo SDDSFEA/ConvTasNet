@@ -16,5 +16,5 @@ nvidia-smi -L || true
 
 source /lustre/users/shi/toolkits/m_speaker_llm/venv/bin/activate
 cd /lustre/users/shi/datasets/librimix/ConvTasNet/ConvTasNet_Separation_WavLM_CAtt
-/lustre/users/shi/toolkits/m_speaker_llm/venv/bin/python train_nets_unfreeze.py --opt ./options/train/train_clean100_WavLM_dwconvFuse_att2_unfreeze.yml --model_net Net_dwAtt2
+/lustre/users/shi/toolkits/m_speaker_llm/venv/bin/python train_nets_unfreeze.py --opt ./options/train/train_clean100_WavLM_dwconvFuse_att1_unfreeze.yml --model_net Net_dwAtt1
 
